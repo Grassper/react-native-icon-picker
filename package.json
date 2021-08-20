@@ -1,0 +1,71 @@
+{
+  "name": "@grassper/icon-picker-testing",
+  "version": "1.0.0",
+  "description": "React native implementation of icons.expo.fyi website. You can pick icons from a wide range of icons.",
+  "homepage": "https://github.com/Grassper/react-native-icon-picker.git",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": "grassper <rishi.barath27@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "android",
+    "ios",
+    "lib",
+    "react-native-icon-picker.podspec",
+    "!android/build",
+    "!.DS_Store",
+    "!.gradle",
+    "!.idea",
+    "!build",
+    "!gradle",
+    "!*.iml",
+    "!gradlew",
+    "!gradlew.bat",
+    "!local.properties",
+    "!project.xcworkspace",
+    "!xcshareddata",
+    "!xcuserdata"
+  ],
+  "scripts": {
+    "compile": "rm -rf lib && tsc -p .",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prepare": "yarn compile",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/runtime": "^7.15.3",
+    "@react-native-community/eslint-config": "^3.0.0",
+    "@types/jest": "^27.0.1",
+    "@types/react-native": "^0.64.13",
+    "@types/react-test-renderer": "^17.0.1",
+    "babel-jest": "^27.0.6",
+    "eslint": "^7.32.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest": "^27.0.6",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react": "^17.0.2",
+    "react-native": "^0.65.0",
+    "react-native-codegen": "^0.0.7",
+    "react-test-renderer": "^17.0.2",
+    "typescript": "^4.3.5"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^12.0.5"
+  }
+}
