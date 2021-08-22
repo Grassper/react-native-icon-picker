@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {
   AntDesign,
   Entypo,
@@ -21,9 +20,12 @@ import {
   ListRenderItem,
   NativeModules,
   Pressable,
+  StyleProp,
   StyleSheet,
   Text,
   TextInput,
+  TextStyle,
+  ViewStyle,
 } from 'react-native'
 
 import { IconCollection } from './Icons'
@@ -71,12 +73,17 @@ const IconObj: IconObjTypes = {
 
 interface PropsTypes {
   iconColor: string
+  iconSize: number
   backgroundColor: string
   numColumns: number
   placeholderText: string
   placeholderTextColor: string
   searchTitle?: string
   iconsTitle?: string
+  textInputStyle?: StyleProp<TextStyle>
+  textStyle?: StyleProp<TextStyle>
+  flatListStyle?: StyleProp<ViewStyle>
+  iconContainerStyle?: StyleProp<ViewStyle>
   onClick: (
     id: string,
     iconName: string,
@@ -95,6 +102,11 @@ export const IconPicker: React.FC<PropsTypes> = ({
   searchTitle,
   iconsTitle,
   onClick,
+  textInputStyle,
+  textStyle,
+  iconSize,
+  flatListStyle,
+  iconContainerStyle,
 }) => {
   const [search, setSearch] = useState('')
   const filteredIcons = IconCollection.filter((icon) =>
@@ -105,7 +117,7 @@ export const IconPicker: React.FC<PropsTypes> = ({
     const IconBoxComponent = IconObj[item.iconSet]
     return (
       <Pressable
-        style={{ ...styles.iconContainer }}
+        style={{ ...styles.iconContainer, ...(iconContainerStyle as {}) }}
         onPress={() =>
           onClick(
             item.uuid,
@@ -118,7 +130,7 @@ export const IconPicker: React.FC<PropsTypes> = ({
       >
         <IconBoxComponent
           name={item.iconName}
-          size={20}
+          size={iconSize}
           color={iconColor || '#fff'}
         />
       </Pressable>
@@ -127,16 +139,25 @@ export const IconPicker: React.FC<PropsTypes> = ({
 
   return (
     <>
-      <Text style={{ ...styles.text }}>{searchTitle}</Text>
+      {searchTitle && (
+        <Text style={{ ...styles.text, ...(textStyle as {}) }}>
+          {searchTitle}
+        </Text>
+      )}
       <TextInput
-        style={{ ...styles.input }}
+        style={{ ...styles.input, ...(textInputStyle as {}) }}
         onChangeText={setSearch}
         placeholder={placeholderText}
         placeholderTextColor={placeholderTextColor}
         value={search}
       />
-      <Text style={{ ...styles.text }}>{iconsTitle}</Text>
+      {iconsTitle && (
+        <Text style={{ ...styles.text, ...(textStyle as {}) }}>
+          {iconsTitle}
+        </Text>
+      )}
       <FlatList
+        style={{ ...(flatListStyle as {}) }}
         numColumns={numColumns}
         data={filteredIcons}
         renderItem={IconRenderer}

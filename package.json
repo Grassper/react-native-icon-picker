@@ -1,5 +1,5 @@
 {
-  "name": "@grassper/icon-picker-testing",
+  "name": "@grassper/react-native-icon-picker",
   "version": "1.0.0",
   "description": "React native implementation of icons.expo.fyi website. You can pick icons from a wide range of icons.",
   "homepage": "https://github.com/Grassper/react-native-icon-picker.git",
@@ -28,8 +28,11 @@
   ],
   "scripts": {
     "compile": "rm -rf lib && tsc -p .",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "prepare": "yarn compile",
+    "lint": "eslint \"./src/*.{js,jsx,ts,tsx}\"",
+    "lint-fix": "eslint \"./src/*.{js,jsx,ts,tsx}\" --fix",
+    "format": "prettier --write \"./src/*.{js,jsx,ts,tsx}\" --config ./.prettierrc.js",
+    "precommit": "lint-staged && pretty-quick --staged",
+    "prepare": "husky install && yarn compile",
     "test": "jest"
   },
   "devDependencies": {
@@ -43,7 +46,10 @@
     "eslint": "^7.32.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "jest": "^27.0.6",
+    "lint-staged": "^11.1.2",
     "metro-react-native-babel-preset": "^0.66.2",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1",
     "react": "^17.0.2",
     "react-native": "^0.65.0",
     "react-native-codegen": "^0.0.7",
@@ -64,6 +70,9 @@
       "json",
       "node"
     ]
+  },
+  "lint-staged": {
+    "./src/*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.5"
