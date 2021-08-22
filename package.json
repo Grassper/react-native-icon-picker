@@ -26,6 +26,12 @@
     "!xcshareddata",
     "!xcuserdata"
   ],
+  "keywords": [
+    "React native icon picker",
+    "Expo icon picker",
+    "Android icon picker",
+    "iOS icon picker"
+  ],
   "scripts": {
     "compile": "rm -rf lib && tsc -p .",
     "lint": "eslint \"./src/*.{js,jsx,ts,tsx}\"",
