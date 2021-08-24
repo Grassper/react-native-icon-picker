@@ -86,6 +86,7 @@ interface PropsTypes {
   iconContainerStyle?: StyleProp<ViewStyle>
   onClick: (
     id: string,
+    searchText: string,
     iconName: string,
     iconSet: string,
     iconColor: string,
@@ -121,6 +122,7 @@ export const IconPicker: React.FC<PropsTypes> = ({
         onPress={() =>
           onClick(
             item.uuid,
+            search,
             item.iconName,
             item.iconSet,
             iconColor,
