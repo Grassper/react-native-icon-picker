@@ -2,8 +2,8 @@
 
 React native implementation of [icons.expo.fyi website](https://icons.expo.fyi/). You can search and pick icons from a wide range of icons.
 
-![Icon picker display](src/assets/example1.png 'Icon picker display')
-![Icon picker search](src/assets/example2.png 'Icon picker search')
+![Icon picker display](https://raw.githubusercontent.com/Grassper/react-native-icon-picker/main/src/assets/example1.png 'Icon picker display')
+![Icon picker search](https://raw.githubusercontent.com/Grassper/react-native-icon-picker/main/src/assets/example2.png 'Icon picker search')
 
 Package Includes:
 
