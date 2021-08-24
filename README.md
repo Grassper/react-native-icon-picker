@@ -2,6 +2,9 @@
 
 React native implementation of [icons.expo.fyi website](https://icons.expo.fyi/). You can search and pick icons from a wide range of icons.
 
+![Icon picker display](src/assets/example1.png 'Icon picker display')
+![Icon picker search](src/assets/example2.png 'Icon picker search')
+
 Package Includes:
 
 - AntDesign
@@ -30,6 +33,68 @@ Before installation make sure expo unimodules configured if it is bare react nat
 **Usage**
 
 `import {IconPicker} from '@grassper/react-native-icon-picker'`
+
+**Example**
+
+```
+import * as React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { IconPicker } from '@grassper/react-native-icon-picker';
+
+export default function App() {
+  const handleSubmit = (id, iconName, iconSet, iconColor, backgroundColor) => {
+    console.log({ id, iconName, iconSet, iconColor, backgroundColor });
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.iconPickerContainer}>
+        <IconPicker
+          searchTitle={'Name'}
+          iconsTitle="Icons"
+          numColumns={6}
+          iconSize={20}
+          iconColor="#fff"
+          backgroundColor='#121212'
+          placeholderText="Search Food, shopping .."
+          placeholderTextColor="#555"
+          onClick={handleSubmit}
+          iconContainerStyle={styles.iconContainer}
+          flatListStyle={styles.flatList}
+        />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding:20,
+    backgroundColor: '#000',
+  },
+  iconPickerContainer:{
+    flex:1
+  },
+  iconContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    margin: 5,
+    justifyContent: 'center',
+    marginTop: 20,
+    alignItems: 'center',
+    backgroundColor: '#121212',
+  },
+  flatList:{
+    alignItems: 'center'
+  }
+});
+
+```
+
+Run it on [snack](https://snack.expo.dev/@grassper/react-native-icon-picker) :rocket:
 
 **Props**
 
