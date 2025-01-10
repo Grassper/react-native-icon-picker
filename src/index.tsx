@@ -17,6 +17,7 @@ import {
 import React, { useState } from 'react'
 import {
   FlatList,
+  FlatListProps,
   ListRenderItem,
   NativeModules,
   Pressable,
@@ -54,7 +55,7 @@ type IconObjTypes = {
     | typeof Zocial
 }
 
-const IconObj: IconObjTypes = {
+export const IconObj: IconObjTypes = {
   AntDesign,
   Entypo,
   EvilIcons,
@@ -82,7 +83,10 @@ interface PropsTypes {
   iconsTitle?: string
   textInputStyle?: StyleProp<TextStyle>
   textStyle?: StyleProp<TextStyle>
+  flatlistProps?: FlatListProps<any>
   flatListStyle?: StyleProp<ViewStyle>
+  iconSets: (keyof IconObjTypes)[]
+  icons: Omit<IconTypes, 'uuid'>[]
   iconContainerStyle?: StyleProp<ViewStyle>
   onClick: (
     id: string,
@@ -107,11 +111,26 @@ export const IconPicker: React.FC<PropsTypes> = ({
   textStyle,
   iconSize,
   flatListStyle,
+  flatlistProps,
   iconContainerStyle,
+  icons,
+  iconSets,
 }) => {
   const [search, setSearch] = useState('')
-  const filteredIcons = IconCollection.filter((icon) =>
-    icon.iconName.toLowerCase().includes(search.toLowerCase())
+
+  const filteredIcons = IconCollection.filter(
+    (icon) =>
+      (iconSets ? iconSets.includes(icon.iconSet) : true) &&
+      (icons
+        ? icons.some(
+            (s) =>
+              s.iconName.toLowerCase().includes(icon.iconName.toLowerCase()) &&
+              (s.iconSet
+                ? s.iconSet.toLowerCase().includes(icon.iconSet.toLowerCase())
+                : true)
+          )
+        : true) &&
+      icon.iconName.toLowerCase().includes(search.toLowerCase())
   )
 
   const IconRenderer: ListRenderItem<IconTypes> = ({ item }) => {
@@ -159,6 +178,7 @@ export const IconPicker: React.FC<PropsTypes> = ({
         </Text>
       )}
       <FlatList
+        {...(flatlistProps as {})}
         style={{ ...(flatListStyle as {}) }}
         numColumns={numColumns}
         data={filteredIcons}
