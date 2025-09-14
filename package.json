@@ -1,6 +1,6 @@
 {
   "name": "@grassper/react-native-icon-picker",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "React native implementation of icons.expo.fyi website. You can pick icons from a wide range of icons.",
   "homepage": "https://github.com/Grassper/react-native-icon-picker#readme",
   "repository": {
@@ -41,8 +41,8 @@
   ],
   "scripts": {
     "compile": "rm -rf lib && tsc -p .",
-    "prepack": "npm run compile",              
-    "prepare": "husky install",                
+    "prepack": "npm run compile",
+    "prepare": "husky install",
     "lint": "eslint \"./src/*.{js,jsx,ts,tsx}\"",
     "lint-fix": "eslint \"./src/*.{js,jsx,ts,tsx}\" --fix",
     "format": "prettier --write \"./src/*.{js,jsx,ts,tsx}\" --config ./.prettierrc.js",
@@ -84,7 +84,14 @@
   },
   "jest": {
     "preset": "react-native",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx}": "eslint --fix"
