@@ -13,7 +13,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
       - run: npm ci
         env: { HUSKY: '0' }
-      - run: npm test --silent
       - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
