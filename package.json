@@ -1,6 +1,6 @@
 {
   "name": "@grassper/react-native-icon-picker",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "React native implementation of icons.expo.fyi website. You can pick icons from a wide range of icons.",
   "homepage": "https://github.com/Grassper/react-native-icon-picker.git",
   "main": "lib/index.js",
