@@ -111,6 +111,7 @@ Run it on [snack](https://snack.expo.dev/@grassper/react-native-icon-picker) :ro
 | textInputStyle       | (optional)         | object   | Text input styles                                                        |
 | textStyle            | (optional)         | object   | Text styles                                                              |
 | flatListStyle        | (optional)         | object   | FlatList styles                                                          |
+| flatlistProps        | (optional)         | object   | FlatList Props                                                           |
 | iconContainerStyle   | (optional)         | object   | Icon container styles                                                    |
 | onClick              | :white_check_mark: | function | `(id, searchText, iconName, iconSet,iconColor,backgroundColor) => void ` |
 
