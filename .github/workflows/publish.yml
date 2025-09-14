@@ -8,6 +8,7 @@ jobs:
     permissions:
       contents: read           
       id-token: write   
+      packages: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -16,6 +17,13 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
       - run: npm ci
         env: { HUSKY: '0' }
-      - run: npm publish --provenance --access public
+
+      - name: Publish to npmjs  
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to GitHub Packages
+        run: npm publish --registry=https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
