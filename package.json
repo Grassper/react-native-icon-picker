@@ -2,7 +2,14 @@
   "name": "@grassper/react-native-icon-picker",
   "version": "1.0.8",
   "description": "React native implementation of icons.expo.fyi website. You can pick icons from a wide range of icons.",
-  "homepage": "https://github.com/Grassper/react-native-icon-picker.git",
+  "homepage": "https://github.com/Grassper/react-native-icon-picker#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grassper/react-native-icon-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Grassper/react-native-icon-picker/issues"
+  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "grassper <rishi.barath27@gmail.com>",
@@ -34,12 +41,24 @@
   ],
   "scripts": {
     "compile": "rm -rf lib && tsc -p .",
+    "prepack": "npm run compile",              
+    "prepare": "husky install",                
     "lint": "eslint \"./src/*.{js,jsx,ts,tsx}\"",
     "lint-fix": "eslint \"./src/*.{js,jsx,ts,tsx}\" --fix",
     "format": "prettier --write \"./src/*.{js,jsx,ts,tsx}\" --config ./.prettierrc.js",
     "precommit": "lint-staged && pretty-quick --staged",
-    "prepare": "husky install && yarn compile",
     "test": "jest"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^12.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -63,25 +82,11 @@
     "react-test-renderer": "^17.0.2",
     "typescript": "^4.3.5"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
   "jest": {
     "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   },
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx}": "eslint --fix"
-  },
-  "dependencies": {
-    "@expo/vector-icons": "^12.0.5"
   }
 }
