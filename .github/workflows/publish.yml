@@ -1,31 +1,49 @@
 name: Publish to npm
+
 on:
   release:
     types: [published]
+  workflow_dispatch: {}       # optional manual trigger
+
 jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read           
-      id-token: write   
-      packages: write
+      contents: read          # needed to checkout
+      id-token: write         # REQUIRED for npm --provenance
+      packages: write         # REQUIRED to publish to GitHub Packages
+
     steps:
       - uses: actions/checkout@v4
+
+      # Install dependencies using npm
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org/'
-      - run: npm ci
-        env: { HUSKY: '0' }
-
-      - name: Publish to GitHub Packages
-        run: npm publish --registry=https://npm.pkg.github.com/
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
-          
-      - name: Publish to npmjs  
+          HUSKY: '0'          # skip husky hooks in CI
+
+      # Publish to GitHub Packages
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@grassper'  # your npm scope
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Publish to public npm registry with provenance
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+      - name: Publish to npmjs
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 
